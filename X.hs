@@ -1,21 +1,21 @@
-{-# language UnicodeSyntax #-}
+{-# language UnicodeSyntax, MultiParamTypeClasses #-}
 
 module X where
 
 import Data.String
 
-class Function a where
-  applyAfter :: a -> (String -> String) -> a
+class Function f s where
+  applyAfter :: f -> (s -> s) -> f
 
-instance Function String where
+instance Function s s where
   applyAfter f g = g f
 
-instance (Function a, Show b) => Function (b -> a) where
-  applyAfter f g = fmap (`applyAfter` g) f
+instance Function a s => Function (b -> a) s where
+  applyAfter f g = \x -> applyAfter (f x) g
 
 
-(…) :: (Function a, Show s) => a -> String -> (s -> a)
+(…) :: (Function a String, Show s) => a -> String -> (s -> a)
 (…) f x = \u -> f × (\s -> s ++ show u ++ x)
 
-(×) :: Function a => a -> (String -> String) -> a
+(×) :: Function a String => a -> (String -> String) -> a
 (×) = applyAfter
