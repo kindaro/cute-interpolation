@@ -1,21 +1,21 @@
-{-# language UnicodeSyntax #-}
+{-# language UnicodeSyntax, MultiParamTypeClasses #-}
 
 module X where
 
-import Data.String
+import Data.Functor.Contravariant
+import Data.Profunctor
 
-class Function a where
-  applyAfter :: a -> (String -> String) -> a
+class Function a b where
+  applyAfter :: a -> (b -> b) -> a
+  (×) :: a -> (b -> b) -> a
+  (×) = applyAfter
 
-instance Function String where
+instance Function String String where
   applyAfter f g = g f
 
-instance (Function a, Show b) => Function (b -> a) where
-  applyAfter f g = fmap (`applyAfter` g) f
+instance (Function a String) => Function (String -> a) String where
+  applyAfter f g = lmap (g) f
 
 
-(…) :: (Function a, Show s) => a -> String -> (s -> a)
+(…) :: (Function a String, Show s) => a -> String -> (s -> a)
 (…) f x = \u -> f × (\s -> s ++ show u ++ x)
-
-(×) :: Function a => a -> (String -> String) -> a
-(×) = applyAfter
