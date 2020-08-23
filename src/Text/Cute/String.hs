@@ -1,4 +1,5 @@
-{-# language UnicodeSyntax, MultiParamTypeClasses, FunctionalDependencies, UndecidableInstances, TypeFamilies, DataKinds, KindSignatures, PolyKinds, TypeFamilyDependencies #-}
+{-# language UnicodeSyntax, MultiParamTypeClasses, FunctionalDependencies, UndecidableInstances, TypeFamilies, DataKinds, KindSignatures, PolyKinds, TypeFamilyDependencies, TypeOperators, TypeSynonymInstances, FlexibleInstances, FlexibleContexts, AllowAmbiguousTypes, PartialTypeSignatures #-}
+{-# OPTIONS_GHC -fno-warn-partial-type-signatures #-}
 
 module Text.Cute.String where
 
