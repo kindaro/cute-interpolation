@@ -24,4 +24,13 @@ type family (f ∷ *) <> (g ∷ *) where
   a <> a = a
 
 (…) ∷ _ ⇒ f → g → f <> (s → String) <> g
-f … g = f ÷ show ÷ g
+f … g = f ÷ doctoredShow ÷ g
+
+class DoctoredShow s where
+  doctoredShow ∷ s → String
+
+instance DoctoredShow String where
+  doctoredShow = id
+
+instance {-# overlappable #-} Show s ⇒ DoctoredShow s where
+  doctoredShow = show
