@@ -25,9 +25,12 @@ library
   hs-source-dirs:      src
   default-language:    Haskell2010
 
-test-suite cute-interpolation-test
+test-suite examples
   default-language:    Haskell2010
   type:                exitcode-stdio-1.0
   hs-source-dirs:      check
-  main-is:             MyLibTest.hs
+  main-is:             Main.hs
   build-depends:       base >=4.14 && <4.15
+                     , cute-interpolation
+                     , tasty
+                     , tasty-hunit
