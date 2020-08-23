@@ -1,6 +1,6 @@
 {-# language UnicodeSyntax, MultiParamTypeClasses, FunctionalDependencies, UndecidableInstances, TypeFamilies, DataKinds, KindSignatures, PolyKinds, TypeFamilyDependencies #-}
 
-module String where
+module Text.Cute.String where
 
 import Data.String
 
