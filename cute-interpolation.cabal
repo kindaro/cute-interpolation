@@ -16,12 +16,15 @@ maintainer:          kindaro@gmail.com
 category:            Text
 build-type:          Simple
 extra-source-files:  CHANGELOG.md
+tested-with: GHC == 8.6.5
+           , GHC == 8.8.3
+           , GHC == 8.10.1
 
 library
   exposed-modules:     Text.Cute.String
   -- other-modules:
   -- other-extensions:
-  build-depends:       base >=4.14 && <4.15
+  build-depends:       base >=4.12 && <4.15
   hs-source-dirs:      src
   default-language:    Haskell2010
 
@@ -30,7 +33,7 @@ test-suite examples
   type:                exitcode-stdio-1.0
   hs-source-dirs:      check
   main-is:             Main.hs
-  build-depends:       base >=4.14 && <4.15
+  build-depends:       base >=4.12 && <4.15
                      , cute-interpolation
                      , tasty
                      , tasty-hunit
